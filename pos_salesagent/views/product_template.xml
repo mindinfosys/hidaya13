@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="product_template_sa_com_inherited">
+            <field name="name">product.salesagent.comm.view</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_id']" position="before">
+                    <field name="sales_agent_commision" groups="stock.group_stock_manager"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

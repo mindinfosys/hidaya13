@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <data>
+        <record id="view_purchase_order_inherit" model="ir.ui.view">
+            <field name="name">purchaseorder.form.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <data>
+                
+                     <xpath expr="//field[@name='price_subtotal']" position="after">
+                    <button name="%(purchase_lines_wizard_action)d" string="History" class="oe_highlight"
+                    type="action"/>
+                     
+                      </xpath>
+                     
+                </data>
+            </field>
+        </record>
+    </data>
+</odoo>

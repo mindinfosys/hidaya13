@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_pdc">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <div style="padding-bottom:5px !important;" class="oe_structure"/>
+                        <h2 align="center">PDC Report</h2>
+                        <h5 align="center"><span t-esc="period"/> </h5>
+
+                        <table class="table table-sm">
+                                  <tbody>
+                                      <tr>
+                                            <th>Payment Date</th>
+                                            <th>Check Date</th>
+                                          <th>Payment Number</th>
+                                          <th>Partner Name</th>
+                                            <th >Amount</th>
+                                        </tr>
+                                       <tr t-foreach="pdc_data" t-as="t">
+                                            <td><span t-esc="t['payment_date']"/></td>
+                                            <td ><span t-esc="t['check_date']"/></td>
+                                           <td ><span t-esc="t['name']"/></td>
+                                           <td ><span t-esc="t['partner_id'].name"/></td>
+                                            <td align="right"><span t-esc="'{0:,.2f}'.format(t['amount'])"/></td>
+                                        </tr>
+                                  </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

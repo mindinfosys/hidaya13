@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_pos_session_form_inherit_edit_close_Date" model="ir.ui.view">
+        <field name="name">pos.session.form.inherit.edit_close_Date</field>
+        <field name="model">pos.session</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_session_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='stop_at']" position="attributes">
+                <attribute name="attrs">{'readonly': [('state', '=', 'closed')]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='stop_at']" position="after">
+                <field name="custom_analytic_account_id" required="1"/>
+                <field name="total_cost"  groups="base.group_no_one"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_pos_session_tree_inherit_edit_close_Date" model="ir.ui.view">
+        <field name="name">pos.session.tree.inherit.edit_close_Date</field>
+        <field name="model">pos.session</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_session_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='stop_at']" position="after">
+                <field name="custom_analytic_account_id"/>
+                <!--field name="total_cost"  groups="base.group_no_one"/-->
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_pos_config_form_inherit_analytic_ac" model="ir.ui.view">
+        <field name="name">pos.config.form.inherit.analytic_ac</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='journal_id']" position="after">
+                <label string="Analytic Account" for="custom_analytic_account_id" class="col-lg-3 o_light_label"/>
+                <field name="custom_analytic_account_id"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

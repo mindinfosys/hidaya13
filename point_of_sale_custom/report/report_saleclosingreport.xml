@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="report_saleclosingreport_document">
+    <t t-call="web.html_container">
+        <template  id="report_header_custom" inherit_id="report.external_layout_header">
+            <xpath expr="//div[@class='header']" position="replace">
+                <div class="header">
+
+                    ColorLand
+
+                </div>
+            </xpath>
+        </template>
+    <t t-call="web.internal_layout">
+        <div class="page">
+
+            <div class="text-center">
+                <span t-esc="o.config_id.name"/><br/>
+                <span t-esc="o.name"/><br/>
+                 <span t-esc="startat"/><br/>
+                To<br/>
+                <span t-esc="endat"/><br/>
+                <br/>
+
+            </div>
+            <table  class="table table-sm">
+
+
+                <thead><tr>
+                    <th colspan="2">Total Sales</th>
+                </tr>
+                </thead>
+                 <tr>
+                    <td>
+                        Total Sales
+                    </td>
+                    <td  align="right">
+                        <t t-esc="'{0:,.2f}'.format(total_sales+discount_amount)" />
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        Total Discount
+                    </td>
+                    <td  align="right">
+                        -<t t-esc="'{0:,.2f}'.format(discount_amount)" />
+                    </td>
+
+                </tr>
+                <tr bgcolor="#808080">
+                    <td>
+                       <b>Net Sales</b>
+                    </td>
+                    <td  align="right">
+                        <b><t t-esc="'{0:,.2f}'.format(total_sales)" /></b>
+                    </td>
+
+                </tr>
+                <tr>
+                        <td colspan="2">
+
+
+                    <br/></td>
+                    </tr>
+
+                <thead>
+                    <tr>
+                    <th colspan="2">Detail Sales</th>
+                </tr>
+                <tr>
+                    <th>Cashier</th>
+                    <th>Amount</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr t-foreach='saletable' t-as='l'>
+                    <td>
+                        <t t-esc="saletable[l]['cashier']" />
+                    </td>
+                    <td  align="right">
+                        <t t-esc="'{0:,.2f}'.format(saletable[l]['amttot'])" />
+                    </td>
+
+                </tr>
+                    <tr>
+                    <td>
+                        Total Tax
+                    </td>
+                    <td  align="right">
+                        <t t-esc="'{0:,.2f}'.format(total_tax)" />
+                    </td>
+                </tr>
+
+
+                    <tr>
+                        <td colspan="2">
+
+
+
+                    <br/></td>
+                    </tr>
+                </tbody>
+
+                                <thead><tr>
+
+                </tr>
+                <tr>
+                    <th>Payment Type</th>
+                    <th>Amount</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr t-foreach='payment_table' t-as='l'>
+                    <td>
+                        <t t-esc="payment_table[l]['payment_method']" />
+                    </td>
+                    <td align="right">
+                        <t t-esc="'{0:,.2f}'.format(payment_table[l]['payment_amount'])" />
+                    </td>
+
+                </tr>
+
+                    <tr bgcolor="#808080">
+                    <td>
+                        <b>Total Payment</b>
+                    </td>
+                    <td  align="right">
+                        <b><t t-esc="'{0:,.2f}'.format(total_payment)" /></b>
+                    </td>
+                </tr>
+
+
+
+                </tbody>
+
+            </table>
+
+
+        </div>
+    </t>
+    </t>
+</template>
+<template id="report_pos_closingsummary">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="point_of_sale_custom.report_saleclosingreport_document"/>
+            </t>
+        </t>
+    </template>
+
+</data>
+</openerp>

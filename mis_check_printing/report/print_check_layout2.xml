@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="print_layout1_check">
+            <div class="page">
+                <div style="position: absolute;top: 10mm; left: 150mm;font-size: 12pt;">
+                    <span t-field="o.check_date" t-field-options='{"format": "d/MM/y"}'/>
+                </div>
+
+                <!--customer/payee name-->
+                <div style="position: absolute;top: 18mm; left: 40mm;font-size: 12pt;">
+                    <span t-esc="o.partner_id.name"/>
+                </div>
+                <!--amount in words-->
+                <div style="position: absolute;top:40mm; left: 20mm;font-size: 12pt;">
+                    <t t-esc="o.check_amount_in_words" /> Only
+                </div>
+                <!--amount-->
+                <div style="position: absolute;top: 45mm; left: 150mm;font-size: 12pt;">
+                    <span t-esc="'{0:,.2f}'.format(o.amount)"/>
+                </div>
+            </div>
+        </template>
+        <template id="print_check_layout1">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <t t-call="mis_check_printing.print_layout1_check" />
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

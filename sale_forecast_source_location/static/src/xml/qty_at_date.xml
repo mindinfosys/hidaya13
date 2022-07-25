@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <div t-extend="sale_stock.QtyDetailPopOver">
+        <t t-jquery="button.action_open_forecast" t-operation="replace">
+            <span></span>
+        </t>
+    </div>
+</templates>

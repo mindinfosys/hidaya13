@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_report_pos_order_search_inherit_search_today" model="ir.ui.view">
+        <field name="name">report.pos.order.inherit.search.today</field>
+        <field name="model">report.pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_report_pos_order_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='not_invoiced']" position="after">
+                <filter string="Today" name="custom_today_order" domain="[('date', '&gt;', context_today().strftime('%Y-%m-%d 00:00:00')),('date', '&lt;', context_today().strftime('%Y-%m-%d 23:59:59'))]"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form_inherit_hide_invoice" model="ir.ui.view">
+        <field name="name">sale.order.inherit.hide.invoice</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='%(sale.action_view_sale_advance_payment_inv)d']" position="attributes">
+                <attribute name="groups">sale_purchase_inventory_extends.custom_group_sale_invoice_hide</attribute>
+            </xpath>
+            <xpath expr="//button[@name='%(sale.action_view_sale_advance_payment_inv)d'][2]" position="attributes">
+                <attribute name="groups">sale_purchase_inventory_extends.custom_group_sale_invoice_hide</attribute>
+            </xpath>
+            
+        </field>
+    </record>
+</odoo>

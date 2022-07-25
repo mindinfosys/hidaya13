@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_agent_selection_config" model="ir.ui.view">
+            <field name="name">Agent Selection</field>
+            <field name="model">pos.config</field>
+            <field name="priority" eval="8"/>
+            <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//h2[@name='order']" position="before">
+                  <div class="row mt16 o_settings_container">
+                      <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                           <field name="agent_configuration"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                          <label for="agent_configuration"/>
+                           <br/>Sales Agent selection in POS interface
+                        </div>
+                      </div>
+                        <div class="col-12 col-lg-6 o_setting_box" title="Employees can scan their badge or enter a PIN to log in to a PoS session. These credentials are configurable in the *HR Settings* tab of the employee form.">
+                            <div class="o_setting_left_pane">
+
+                            </div>
+                            <div class="o_setting_right_pane" id="login_with_employees">
+
+                                <div class="text-muted">
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <templates id="template" inherit_id="hr_attendance.HrAttendanceKioskMode">
+
+    <t t-extend="HrAttendanceKioskMode">
+        <t t-jquery=".o_hr_attendance_kiosk_welcome_row" t-operation='replace'>
+
+
+              <div class="col-sm-5" style="margin-left:30%">
+                        <img class="img img-fluid d-block mx-auto" src="/hr_attendance/static/src/img/barcode.png"/>
+                        <h5 class="mt8 mb0">Scan your badge</h5>
+                    </div>
+<!--                    <div class="col-sm-2">-->
+<!--                        <h3 class="mt0 mb8 text-muted"><i>or</i></h3>-->
+<!--                    </div>-->
+<!--                    <div class="col-sm-5">-->
+<!--                        <button class="o_hr_attendance_button_employees btn btn-primary mb16">-->
+<!--                            <div class="mb16 mt16">Identify<br/>Manually</div>-->
+<!--                        </button>-->
+<!--                    </div>-->
+
+        </t>
+        <!--<t t-jquery="jquery_selector" t-operation="operation">-->
+
+    </t>
+
+</templates>
+

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="paperformat_check_layout1" model="report.paperformat">
+            <field name="name">Layout1 Check Paper</field>
+            <field name="default" eval="False" />
+            <field name="format">custom</field>
+            <field name="page_height">130</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">10</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">10</field>
+            <field name="margin_right">10</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">10</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="paperformat_check_layout2" model="report.paperformat">
+            <field name="name">Layout2 Check Paper</field>
+            <field name="default" eval="False" />
+            <field name="format">custom</field>
+            <field name="page_height">130</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">10</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">10</field>
+            <field name="margin_right">10</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">10</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <report id="action_print_check_layout1"
+            string="Print Check Layout1"
+            model="account.payment"
+            name="mis_check_printing.print_check_layout1"
+            file="mis_check_printing.print_check_layout1"
+            report_type="qweb-pdf"
+            attachment_use="True"
+
+            paperformat="mis_check_printing.paperformat_check_layout1"
+            print_report_name="'Check Layout1 - %s' % (object.partner_id.name or '',)"
+            menu="False"
+        />
+        <report id="action_print_check_layout2"
+            string="Print Check Layout2"
+            model="account.payment"
+            name="mis_check_printing.print_check_layout2"
+            file="mis_check_printing.print_check_layout2"
+            report_type="qweb-pdf"
+            attachment_use="True"
+
+            paperformat="mis_check_printing.paperformat_check_layout2"
+            print_report_name="'Check Layout2 - %s' % (object.partner_id.name or '',)"
+            menu="False"
+        />
+
+    </data>
+</odoo>

@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="print_pdc_checks_wizard_view" model="ir.ui.view">
+        <field name="name">Print PDC Wizard Check</field>
+        <field name="model">print.pdc.checks.wizard</field>
+        <field name="arch" type="xml">
+
+            <form string="PDC Report">
+                <group>
+                    <group>
+                        <field name="from_date"/>
+                    </group>
+                    <group>
+                        <field name="to_date"/>
+                    </group>
+                    <group>
+                        <field name="report_type"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="pdc_report" string="PDC Report" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="mis_pdc_report_action_view" model="ir.actions.act_window">
+            <field name="name">PDC Report</field>
+            <field name="target">new</field>
+            <field name="res_model">print.pdc.checks.wizard</field>
+            <field name="view_mode">form</field>
+        </record>
+
+        <menuitem
+                id="mis_pdc_report"
+                name="PDC Report"
+                parent="account.account_reports_management_menu"
+                action="mis_pdc_report_action_view"
+                groups="account.group_account_manager"/>
+
+</odoo>

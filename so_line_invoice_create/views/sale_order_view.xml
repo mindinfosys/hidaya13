@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form_inherit_ref_change" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.ref.change</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='client_order_ref']" position="replace">
+            </xpath>
+            <xpath expr="//field[@name='sale_order_template_id']" position="after">
+                <field name="client_order_ref"/>
+                <field name="custom_source_id" attrs="{'readonly': [('state', 'not in', ['draft', 'sent'])]}"/>
+            </xpath>
+            <xpath expr="//field[@name='payment_term_id']" position="after" >
+                <field name="custom_source_location_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_line_tree_inherit_customer_ref" model="ir.ui.view">
+        <field name="name">sale.order.line.list.inherit.custmer.refs</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_id']" position="after">
+                <field name="custom_client_order_ref"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_sale_order_line_custom">
+        <field name="name">Sales Order Lines</field>
+        <field name="res_model">sale.order.line</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="sale.view_order_line_tree"/>
+        <field name="domain">[('qty_to_invoice', '>', 0.0)]</field>
+    </record>
+    <menuitem id="menu_order_line" name="Sales Order Lines" action="action_sale_order_line_custom" parent="sale.sale_order_menu"/>
+</odoo>

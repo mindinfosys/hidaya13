@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model ="ir.ui.view" id="create_so_line_wizard">
+        <field name="name">create.so.line.wizard.form</field>
+        <field name="model">create.so.line</field>
+        <field name="arch" type="xml">
+            <form string="Create Invoice for Sales Order Lines">
+                <group>
+                    <h4>Allow You to Create Invoice for selected Sales Order Lines.</h4>
+                </group>
+                <footer>
+                    <button string="Create Invoice" name="create_inv_line" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window
+            name="Create Invoice"
+            res_model="create.so.line"
+            binding_model="sale.order.line"
+            binding_views="list"
+            view_mode="form"
+            target="new"
+            view_id="create_so_line_wizard"
+            id= "create_so_line_wizard_action"/>
+</odoo>

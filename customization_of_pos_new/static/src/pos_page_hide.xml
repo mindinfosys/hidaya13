@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+<t t-extend="hr_attendance.HrAttendanceKioskMode">
+        <t t-jquery=".o_hr_attendance_kiosk_welcome_row" t-operation='replace'>
+            My Profile
+        </t>
+    </t>
+</templates>
+<!--<odoo>-->
+<!--    <data>-->
+<!--HrAttendanceKioskMode-->
+
+<!--    </data>-->
+<!--</odoo>-->

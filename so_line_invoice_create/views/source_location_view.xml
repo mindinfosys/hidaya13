@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="custom_source_location_form_view" model="ir.ui.view">
+            <field name="name">Custom Source Location Form</field>
+            <field name="model">custom.source.location</field>
+            <field name="arch" type="xml">
+                <form string="Custom Source Location Form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="stock_location_id"/>
+                            </group>
+                            <group>
+				<field name="analytic_account_id"/>
+			    </group>				
+			</group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="custom_source_location_tree_view" model="ir.ui.view">
+            <field name="name">Custom Source Location Tree</field>
+            <field name="model">custom.source.location</field>
+            <field name="arch" type="xml">
+                <tree string="Custom Source Location Tree">
+                    <field name="name"/>
+                    <field name="stock_location_id"/>
+		    <field name="analytic_account_id"/>
+                </tree>
+            </field>
+        </record>
+	
+
+        <record id="action_custom_source_location" model="ir.actions.act_window">
+            <field name="name">Source Locations</field>
+            <field name="res_model">custom.source.location</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Click to create new Source Locations</p>
+            </field>
+        </record>
+
+        <menuitem id="menu_custom_source_location_sale_conf" name="Source Locations" action="action_custom_source_location" parent="sale.menu_sale_config"/>
+        <menuitem id="menu_custom_source_location_invent_conf" name="Source Locations" action="action_custom_source_location" parent="stock.menu_stock_config_settings"/>
+    </data>
+</odoo>

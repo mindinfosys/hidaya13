@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="mis_account_payment_tree_view" model="ir.ui.view">
+        <field name="name">Mis Account Payment Tree</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_tree"/>
+        <field name="arch" type="xml">
+           <field name="payment_date" position="after">
+               <field name="check_date"/>
+           </field>
+        </field>
+    </record>
+
+    <record id="mis_account_payment_filter_view"  model="ir.ui.view">
+        <field name="name">Mis Account Payment Filter</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_search"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//filter[@name='payment_date']" position="after">
+               <separator/>
+               <filter string="Check Date" name="check_date" date="check_date"/>
+           </xpath>
+        </field>
+    </record>
+
+
+</odoo>

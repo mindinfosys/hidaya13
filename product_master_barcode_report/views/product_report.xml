@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_header_custom" inherit_id="product.report_simple_barcode">
+              <xpath expr="//div[@style='width: 32%; display: inline-table; height: 10rem;']" position="replace">
+                       <t t-if="product.barcode">
+                    <div>
+                                            <table  style="width: 47mm;valign:middle;">
+                                                <tr>
+                                                <td class="text-center"  style="font-size: 10px;width: 100mm;">
+                                                  &amp;nbsp;
+                                                  </td>
+
+                                                </tr>
+
+
+<!--                                                <t t-if="product.tracking == 'none'">-->
+                                                    <tr>
+                                                        <td class="text-center align-middle"  style="width: 150mm;">
+                                                            <t t-if="product.barcode">
+                                                                    <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', product.barcode, 1500, 500)" style="width:100%;" alt="Barcode"/>
+
+
+                                                            </t>
+                                                            <t t-else="">
+                                                                <span class="text-muted">No barcode available</span>
+                                                            </t>
+                                                        </td>
+                                                    </tr>
+
+<!--                                                </t>-->
+                                                <tr>
+                                                    <td class="text-center"  style="font-size: 10px;width: 100mm;">
+                                                        <span   style="font-size: 10px;" t-esc="product.barcode"/>&amp;nbsp;&amp;nbsp;AED <span t-esc="'{0:,.2f}'.format(product.list_price)"/>
+                                                        <br/><span t-esc="product.display_name[:25]"/>
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+                                        </div>
+
+                       </t>
+        </xpath>
+    </template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </data>
+</odoo>

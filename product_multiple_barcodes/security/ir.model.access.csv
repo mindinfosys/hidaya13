@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_barcode_multi_user,product.barcode.multi.user,model_product_barcode_multi,base.group_user,1,1,1,1
+access_product_barcode_multi_root,product.code.source.root,model_product_barcode_multi,base.group_system,1,1,1,1
+access_mis_code_source_user,mis.code.source.user,model_mis_code_source,base.group_user,1,1,1,1
+access_mis_code_source_root,mis.code.source.root,model_mis_code_source,base.group_system,1,1,1,1
+access_mis_product_brand_user,mis.product.brand.user,model_mis_product_brand,base.group_user,1,1,1,1
+access_mis_product_brand_root,mis.product.brand.root,model_mis_product_brand,base.group_system,1,1,1,1

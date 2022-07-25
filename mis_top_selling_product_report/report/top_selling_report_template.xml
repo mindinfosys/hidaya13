@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="top_selling_reports">
+        <t t-call="web.html_container">
+            <t t-call="mis_top_selling_product_report.internal_layout">
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <center>
+                        <t t-if="other['least']">
+                        <h2 style="color: #000;">Least Selling Products</h2>
+                        </t>
+                        <t t-if="not other['least']">
+                        <h2 style="color: #000;">Top Selling Products</h2>
+                        </t>
+                    </center>
+                    <div class="oe_structure"/>
+                    <br />
+                    <span>
+                        <t t-if="other['range']">
+                            <b>Top Product of :</b> <t t-esc="other['range']"/><br />
+                        </t>
+                        <t t-if="other['date_selected_from']">
+                            <b>Top Product of :</b> <t t-esc="other['date_selected_from']"/> To <t t-esc="other['date_selected_to']"/><br />
+                        </t>
+                        <t t-if="other['limit']">
+                            <b>Product Range :</b> <t t-esc="other['limit']"/> Products<br />
+                        </t>
+                    </span>
+                </div>
+                <br />
+                <table class="table table-sm" style="border: 1px solid #000;">
+                    <tbody>
+                        <tr  style="border: 1px solid #000;">
+                            <th style="text-align: center;color: #000;text-color: #000;">Product</th>
+                            <th style="text-align: center;color: #000;text-color: #000;">Sold Quantity</th>
+
+                        </tr>
+                        <tr t-foreach="data" t-as="value"  style="border: 1px solid #000;">
+                          <td style="height:5px;color: #000;text-color: #000"><t t-esc="value['product_name']"/></td>
+                          <td style="height:5px;text-align: center;color: #000;text-color: #000;"><t t-esc="value['sum']"/></td>
+
+                       </tr>
+                    </tbody>
+                </table>
+            </t>
+        </t>
+    </template>
+
+    <template id="internal_layout">
+        <t t-if="not o and doc">
+            <t t-set="o" t-value="doc"/>
+        </t>
+
+        <t t-if="o and 'company_id' in o">
+            <t t-set="company" t-value="o.company_id.sudo()"/>
+        </t>
+        <t t-if="not o or not 'company_id' in o">
+            <t t-set="company" t-value="res_company"/>
+        </t>
+
+            <div class="article o_report_layout_background">
+            <t t-raw="0" />
+            </div>
+            <div class="footer">
+                <div class="text-center" style="border-top: 1px solid black;">
+
+                <div name="financial_infos">
+                <span t-field="company.report_footer"/>
+                </div>
+                <div class="text-muted">
+                Page: <span class="page"/> / <span class="topage"/>
+            </div>
+            </div>
+            </div>
+    </template>
+
+</odoo>

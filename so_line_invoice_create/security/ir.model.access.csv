@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_custom_source_location_user,custom_source_location_user,model_custom_source_location,base.group_user,1,0,0,0
+access_custom_source_location_sale_man,custom_source_location_sale_man,model_custom_source_location,sales_team.group_sale_manager,1,1,1,1
+access_custom_source_location_invent_man,custom_source_location_invent_man,model_custom_source_location,stock.group_stock_manager,1,1,1,1

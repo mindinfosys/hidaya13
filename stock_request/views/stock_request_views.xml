@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="stock_request_tree">
+        <field name="name">stock.request.tree</field>
+        <field name="model">stock.request</field>
+        <field name="arch" type="xml">
+            <tree string="Stock requests">
+                <field name="name" />
+                <field name="from_location_id"/>
+                <field name="to_location_id"/>
+                <field name="request_type"/>
+                <field name="requested_by"/>
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="stock_request_form">
+        <field name="name">stock.request.form</field>
+        <field name="model">stock.request</field>
+        <field name="arch" type="xml">
+            <form string="Stock request">
+                <header>
+                    <button
+                        name="action_done"
+                        string="Done"
+                        type="object"
+                        states="open"
+                         groups="stock_request.group_stock_request_manager"
+                    />
+                    <button
+                        name="action_confirm"
+                        string="Confirm"
+                        type="object"
+                        attrs="{'invisible': [('state', 'not in', ['draft'])]}"
+                    />
+                    <button
+                        name="action_cancel"
+                        states="draft,open"
+                        type="object"
+                        string="Cancel"
+                    />
+                    <button
+                        name="action_draft"
+                        states="cancel"
+                        type="object"
+                        string="Set to Draft"
+                    />
+                    <button
+                        name="action_draft_manager"
+                        states="done"
+                        type="object"
+                        string="Set to Draft"
+                        groups="stock_request.group_stock_request_manager"
+                    />
+
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                     <div class="oe_title">
+                        <label for="name" string="Stock Request" />
+                        <h1>
+                            <field name="name" readonly="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="expected_date"  attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                             <field name="request_type" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                       </group>
+                        <group>
+                            <field
+                                name="from_location_id" options="{'no_create': True}" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field
+                                name="to_location_id" options="{'no_create': True}" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="requested_by"/>
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                                options="{'no_create': True}"
+                            />
+                        </group>
+                    </group>
+                    <group><field name="remarks"/></group>
+
+                     <group>
+                     </group>
+                    <notebook>
+                        <page name="items" string="Items">
+                            <field name="request_ids" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                <tree editable="bottom">
+                                     <field name="product_id" />
+                                    <field name="product_uom_qty" />
+                                    <field
+                                        name="product_uom_id"
+                                        options="{'no_open': True, 'no_create': True}"
+                                        groups="uom.group_uom"
+                                    />
+
+
+                                    <field name="qty_in_progress" />
+                                    <field name="qty_done" />
+
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="stock_request_search">
+        <field name="name">stock.request.search</field>
+        <field name="model">stock.request</field>
+        <field name="arch" type="xml">
+            <search string="Stock Requests Search">
+                <field name="name" string="Stock Request" />
+                <field name="state" />
+
+                <field name="from_location_id"/>
+                 <field name="to_location_id"/>
+                 <field name="requested_by"/>
+                <field name="company_id" groups="base.group_multi_company" />
+                <separator />
+                <!--filter
+                    string="Archived"
+                    name="inactive"
+                    domain="[('active','=',False)]"
+                /-->
+                <separator />
+                <filter string="Draft" name="draft" domain="[('state','=','draft')]" />
+                <filter
+                    string="In Progress"
+                    name="open"
+                    domain="[('state','=','open')]"
+                />
+                <filter string="Finished" name="done" domain="[('state','=','done')]" />
+                <filter
+                    string="Cancelled"
+                    name="cancel"
+                    domain="[('state','=','cancel')]"
+                />
+                <group expand="0" string="Group By">
+
+                    <filter
+                        string="From Location"
+                        name="From location"
+                        domain="[]"
+                        context="{'group_by':'from_location_id'}"
+                    />
+                    <filter
+                        string="To Location"
+                        name="To location"
+                        domain="[]"
+                        context="{'group_by':'to_location_id'}"
+                    />
+                     <filter
+                        string="Requested By"
+                        name="Requested By"
+                        domain="[]"
+                        context="{'group_by':'requested_by'}"
+                    />
+
+
+                </group>
+            </search>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_stock_request_form">
+        <field name="name">Stock Request</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.request</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

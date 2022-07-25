@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <report id="sales_summary_report_pdf"
+            model="pos.session"
+            string="Sales Summary Report"
+            report_type="qweb-pdf"
+            name="point_of_sale_custom.report_pos_closingsummary"
+            file="point_of_sale_custom.report_pos_closingsummary"/>
+</odoo>
+

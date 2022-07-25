@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model ="ir.ui.view" id="create_product_purchaseorder_wizard">
+        <field name="name">custom.product.create.po.wizard.form</field>
+        <field name="model">custom.product.create.po</field>
+        <field name="arch" type="xml">
+            <form string="Create Purchase Order from products">
+                <group>
+                    <h4>Allow You to Create Purchase Order for selected products.</h4>
+                </group>
+                <group>
+                    <group>
+                        <field name="vendor_id"/>
+                        <field name="picking_type_id"/>
+                    </group>
+                    <group>
+                        <field name="company_id"/>
+                    </group>
+                </group>
+                <footer>
+                    <button string="Create Purchase Order" name="create_product_po" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window
+            name="Create Purchase Order"
+            res_model="custom.product.create.po"
+            binding_model="product.product"
+            binding_views="list"
+            view_mode="form"
+            target="new"
+            view_id="create_product_purchaseorder_wizard"
+            id= "create_product_purchase_order_action"/>
+</odoo>
